@@ -5,8 +5,6 @@
 // idea: think about using more than one than one grid. Possibly one more for checking percolation. That would allow virtual site at top.
 // to avoid 'backwash' use only one virtual site and create a 'percolates' field you can set to true.
 
-import edu.princeton.cs.algs4.StdRandom;
-import edu.princeton.cs.algs4.StdStats;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
@@ -53,9 +51,9 @@ public class Percolation {
 			// connect 0 index to top row
 			connections.union(0, i);
 			// connect last element to bottom row
-			connections.union(size - 1, (nSquared +1) - i);
+			connections.union(size - 1, (nSquared + 1) - i);
 			// connect the one virtual site in fullSites to the top row. This is our
-			// 'source' for filling sites. Any open site connected to this site is full.
+			// 'source' for filling sites.
 			fullSites.union(0, i);
 		}
 
@@ -67,7 +65,7 @@ public class Percolation {
 		validateIndicies(row, col);
 		// Mark site as open. If a site in the grid is closed it has a 0 value. If open,
 		// 1
-		grid[row-1][col-1] = 1;
+		grid[row - 1][col - 1] = 1;
 		// increment openSites
 		openSites++;
 		// get index conversion for site
@@ -100,13 +98,13 @@ public class Percolation {
 	// is site open?
 	public boolean isOpen(int row, int col) {
 		validateIndicies(row, col);
-		return grid[row -1][col -1] == 1;
+		return grid[row - 1][col - 1] == 1;
 	}
 
 	// is site full?
 	public boolean isFull(int row, int col) {
 		validateIndicies(row, col);
-		return isOpen(row,col) && fullSites.connected(gridToIndex(row, col), 0);
+		return isOpen(row, col) && fullSites.connected(gridToIndex(row, col), 0);
 
 	}
 
@@ -126,13 +124,6 @@ public class Percolation {
 
 	// optional test client
 	public static void main(String[] args) {
-//		Percolation perc = new Percolation(10);
-//		perc.open(1, 1);
-//		perc.open(2, 1);
-//		System.out.println(perc.connections.connected(perc.gridToIndex(1, 1), perc.gridToIndex(1, 4)));
-//
-//		System.out.println(perc.connections.connected(perc.gridToIndex(1, 7), perc.gridToIndex(2, 1)));
-		
 
 	}
 
